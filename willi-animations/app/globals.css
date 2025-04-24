@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ------------ */
+
+.hover-line {
+  @apply relative inline-block no-underline max-w-fit h-auto p-0;
+}
+
+.hover-line::after {
+  content: "";
+  @apply block absolute bottom-[-1px] left-0 w-full h-[1px] bg-[#111];
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.hover-line:hover::after,
+.hover-line.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
